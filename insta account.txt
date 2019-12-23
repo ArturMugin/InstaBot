@@ -1,0 +1,14 @@
+Email
+u: leagueoglegendsinsta@inbox.lv
+p: leagueoglegendsinsta123
+
+Insta
+u: League_boomers
+p: leagueoglegendsinsta123
+
+Reddit
+leagueoglegendsinsta@inbox.lv
+u: leagueoglegendsinsta
+p: leagueoglegendsinsta123
+script: _tcBKu9u-1WnAg
+secret: lA_WEyYyVTZyFFVBKO98QOBzWKM
