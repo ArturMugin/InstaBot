@@ -1,19 +1,28 @@
 from instabot import Bot
 import os
 import random
+import pickle
 import redditbot
 
 import time
 
 # Upload the image to Instagram, set the caption as the filename minus the file extension and then remove it
 def uploadImage(bot, image):
-    if bot.upload_photo(f"{os.getcwd()}\\images\\{image}", redditbot.captions[image[:-4]]):
+    caption = redditbot.captions[image[:-4]]
+    if bot.upload_photo(f"{os.getcwd()}\\images\\{image}", caption):
         print("Image Removed")
-        removeImage(image)
+        removeImage(image, caption)
 
-def removeImage(image):
+def removeImage(image, caption):
     try:
         os.remove(f"{os.getcwd()}\\images\\{image}")
+
+        try:
+            del redditbot.captions[caption]
+            redditbot.saveCaptions()
+        except KeyError:
+            pass
+
         print("Image Removed")
     except OSError:
         pass

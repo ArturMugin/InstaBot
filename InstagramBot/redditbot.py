@@ -27,13 +27,13 @@ def handleImages(leagueOfMemes):
         downloadImage(submission.url, fileName)
 
     print("All Images Downloaded")
-
-    with open("captions.pickle", "wb") as handle:
-        pickle.dump(captions, handle, pickle.HIGHEST_PROTOCOL)
-
+    print("Stored Captions")
+    saveCaptions()
     changeImageSizes()
 
-
+def saveCaptions():
+    with open("captions.pickle", "wb") as handle:
+        pickle.dump(captions, handle, pickle.HIGHEST_PROTOCOL)
 """
 Resize the images to the correct sizes for Instagram
 
@@ -51,11 +51,11 @@ def changeImageSizes():
             pass
     print("Image Sizes Converted to 1080x1080\n")
 
-"""
+def loadCaptions():
+    with open("captions.pickle", "rb") as handle:
+        captions.update(pickle.load(open("captions.pickle", "rb")))
 
-
-Check if the images directory is empty by returning True or False
-"""
+# Check if the images directory is empty by returning True or False
 def checkForEmptyDirectory():
     if not os.listdir(f"{os.getcwd()}\\images"):
         captions.clear()
@@ -88,8 +88,7 @@ def main():
     if checkForEmptyDirectory():
         handleImages(leagueOfMemes)
     else:
-        with open("captions.pickle", "rb") as handle:
-            captions.update(pickle.load(open("captions.pickle", "rb")))
+        loadCaptions()
         print("Skipping Image Downloads ...")
 
 # if you dont understand this, read this: https://stackoverflow.com/questions/419163/what-does-if-name-main-do#answer-419185
