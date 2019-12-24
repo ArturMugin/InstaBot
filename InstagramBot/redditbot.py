@@ -53,7 +53,7 @@ def changeImageSizes():
 
 def loadCaptions():
     with open("captions.pickle", "rb") as handle:
-        captions.update(pickle.load(open("captions.pickle", "rb")))
+        captions.update(pickle.load(handle))
 
 # Check if the images directory is empty by returning True or False
 def checkForEmptyDirectory():
