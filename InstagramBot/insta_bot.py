@@ -8,7 +8,7 @@ import time
 # Upload the image to Instagram, set the caption as the filename minus the file extension and then remove it
 def uploadImage(bot, image):
     bot.upload_photo(f"{os.getcwd()}\\images\\{image}", image[:-4])
-    removeImage(image)
+    #removeImage(image)
 
 def removeImage(image):
     os.remove(f"{os.getcwd()}\\images\\{image}")
