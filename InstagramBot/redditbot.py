@@ -11,8 +11,11 @@ captions = {}
 
 # Download the image and set the filename
 def downloadImage(url, fileName):
-    urllib.request.urlretrieve(url, f"{os.getcwd()}\\images\\{fileName}{url[-4:]}")
-    print(f"Downloading {url} ...")
+    try:
+        urllib.request.urlretrieve(url, f"{os.getcwd()}\\images\\{fileName}{url[-4:]}")
+        print(f"Downloading {url} ...")
+    except urllib.error.HTTPError:
+        print("HTTP Error 502: Bad Gateway")
 
 # Pre-process the image for downloading
 def handleImages(leagueOfMemes):

@@ -5,6 +5,7 @@ import pickle
 import redditbot
 from time import sleep as s
 import schedule
+import glob
 
 # Upload the image to Instagram, set the caption as the filename minus the file extension and then remove it
 def uploadImage(bot, image):
