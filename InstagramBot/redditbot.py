@@ -6,10 +6,11 @@ import os
 
 from PIL import Image # Install 'Pillow' package for PIL to work
 
+captions = {}
 
 # Download the image and set the filename
 def downloadImage(url, fileName):
-    urllib.request.urlretrieve(url, f"{os.getcwd()}\\images\\{fileName}.{url[-4:]}")
+    urllib.request.urlretrieve(url, f"{os.getcwd()}\\images\\{fileName}{url[-4:]}")
     print(f"Downloading {url} ...")
 
 # Pre-process the image for downloading
@@ -18,6 +19,8 @@ def handleImages(leagueOfMemes):
         # Delete Windows restricted characters
         fileName = re.sub('\W+',' ', submission.title)
 
+        # Create caption in the form of a dictionary
+        captions[fileName] = submission.title
 
         # Download the image
         downloadImage(submission.url, fileName)

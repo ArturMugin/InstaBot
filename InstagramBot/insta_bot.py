@@ -7,13 +7,16 @@ import time
 
 # Upload the image to Instagram, set the caption as the filename minus the file extension and then remove it
 def uploadImage(bot, image):
-    if(bot.upload_photo(f"{os.getcwd()}\\images\\{image}", image[:-4])):
+    if bot.upload_photo(f"{os.getcwd()}\\images\\{image}", redditbot.captions[image[:-4]]):
         print("Image Removed")
         removeImage(image)
 
 def removeImage(image):
-    os.remove(f"{os.getcwd()}\\images\\{image}")
-    print("Image Removed")
+    try:
+        os.remove(f"{os.getcwd()}\\images\\{image}")
+        print("Image Removed")
+    except OSError:
+        pass
 
 # Select an image from the images folder and return the filename
 def selectImage():
