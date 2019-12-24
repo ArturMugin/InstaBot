@@ -1,30 +1,43 @@
 from instabot import Bot
 import os
 import random
+import redditbot
+
 import time
 
-league = Bot()
-#login to insta
-league.login(username="League_boomers", password="leagueoglegendsinsta123")
-def upload():
-    #choose which pic and caption to post
-    path =r'C:\Users\Mr Kek\Desktop\Insta bot\RedditBot\images\\'
-    path_for_delete =r'C:\Users\Mr Kek\Desktop\Insta bot\RedditBot\images'
-    files = os.listdir(path)
-    index = random.randrange(0, len(files))
-    print(files[index])
+# Upload the image to Instagram, set the caption as the filename minus the file extension
+def uploadImage(bot, image):
+    bot.upload_photo(f"{os.getcwd()}\\images\\{image}", image[:-4])
 
+def removeImage(image):
+    os.remove(f"{os.getcwd()}\\images\\{image}")
+    print("Image Removed")
 
+# Select an image from the images folder and return the filename
+def selectImage():
+    return random.choice(os.listdir(f"{os.getcwd()}\\images"))
 
-    #choose a ramd,om file from folder and assign caption as a name of the file (delete 4 characters .jpg)
-    league.upload_photo(path + files[index], caption=files[index][:-4])
+def main():
+    # Start the Reddit Bot
+    redditbot.main()
 
+    # Create the Instagram Bot
+    league = Bot()
 
+    # Login to Instagram
+    league.login(username="League_boomers", password="leagueoglegendsinsta123")
 
-#    time.sleep(5)
-#    os.remove(path_for_delete + files[index] + ".REMOVE_ME")
+    # Select the image
+    image = selectImage()
+    print(f"Selected Image: '{image}'")
 
+    # Upload the image
+    print("\nAttempting Upload ...")
+    uploadImage(league, image)
 
+    # Remove the image
+    removeImage(image)
 
-upload()
-
+# if you dont understand this, read this: https://stackoverflow.com/questions/419163/what-does-if-name-main-do#answer-419185
+if __name__ == '__main__':
+    main()
