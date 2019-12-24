@@ -16,6 +16,7 @@ def uploadImage(bot, image):
 def removeImage(image, caption):
     try:
         os.remove(f"{os.getcwd()}\\images\\{image}")
+        os.remove(f"{os.getcwd()}\\images\\{image}.REMOVE_ME")
 
         try:
             del redditbot.captions[caption]
