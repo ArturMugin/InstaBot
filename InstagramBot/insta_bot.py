@@ -5,9 +5,10 @@ import redditbot
 
 import time
 
-# Upload the image to Instagram, set the caption as the filename minus the file extension
+# Upload the image to Instagram, set the caption as the filename minus the file extension and then remove it
 def uploadImage(bot, image):
     bot.upload_photo(f"{os.getcwd()}\\images\\{image}", image[:-4])
+    removeImage(image)
 
 def removeImage(image):
     os.remove(f"{os.getcwd()}\\images\\{image}")
@@ -34,9 +35,6 @@ def main():
     # Upload the image
     print("\nAttempting Upload ...")
     uploadImage(league, image)
-
-    # Remove the image
-    removeImage(image)
 
 # if you dont understand this, read this: https://stackoverflow.com/questions/419163/what-does-if-name-main-do#answer-419185
 if __name__ == '__main__':
