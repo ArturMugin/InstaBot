@@ -3,6 +3,7 @@ import re
 import praw
 import urllib.request
 import os
+import pickle
 
 from PIL import Image # Install 'Pillow' package for PIL to work
 
@@ -26,6 +27,9 @@ def handleImages(leagueOfMemes):
         downloadImage(submission.url, fileName)
 
     print("All Images Downloaded")
+
+    with open("captions.pickle", "wb") as handle:
+        pickle.dump(captions, handle, pickle.HIGHEST_PROTOCOL)
 
     changeImageSizes()
 
@@ -84,6 +88,8 @@ def main():
     if checkForEmptyDirectory():
         handleImages(leagueOfMemes)
     else:
+        with open("captions.pickle", "rb") as handle:
+            captions.update(pickle.load(open("captions.pickle", "rb")))
         print("Skipping Image Downloads ...")
 
 # if you dont understand this, read this: https://stackoverflow.com/questions/419163/what-does-if-name-main-do#answer-419185
