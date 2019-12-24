@@ -75,14 +75,14 @@ def main():
     subReddit = reddit.subreddit('LeagueOfMemes')
 
     # Get top 5 posts
-    leagueOfMemes = subReddit.top(time_filter="day", limit=5)
+    leagueOfMemes = subReddit.top(time_filter="day", limit=6)
 
     """
     If the images directory is empty then download and handle the response of the top 5 posts on Reddit otherwise
     don't download anything, this is to avoid the Bot uploading photos its already uploaded. By making sure it uses
-    its initials 5 photos before downloading a new set means that there is a lower chance of it re-downloading 
+    its initials 5 photos before downloading a new set means that there is a lower chance of it re-downloading
     a re-uploaded Image off of Reddit.
-    
+
     This can be removed if you want.
     """
     if checkForEmptyDirectory():

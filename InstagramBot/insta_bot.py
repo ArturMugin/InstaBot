@@ -62,7 +62,7 @@ schedule.every(n).hours.do(f) - every n amount of hours
 """
 if __name__ == '__main__':
     main()
-    schedule.every(6).hours.do(main)
+    schedule.every(4).hours.do(main)
 
     while 1:
         schedule.run_pending()
