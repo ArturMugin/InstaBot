@@ -3,8 +3,8 @@ import os
 import random
 import pickle
 import redditbot
-
-import time
+from time import sleep as s
+import schedule
 
 # Upload the image to Instagram, set the caption as the filename minus the file extension and then remove it
 def uploadImage(bot, image):
@@ -50,6 +50,20 @@ def main():
     print("\nAttempting Upload ...")
     uploadImage(league, image)
 
-# if you dont understand this, read this: https://stackoverflow.com/questions/419163/what-does-if-name-main-do#answer-419185
+"""
+if you dont understand this, read this: https://stackoverflow.com/questions/419163/what-does-if-name-main-do#answer-419185
+creates a scheduler to run after a certain time period where n is a number and f is a function:
+schedule.every().second.do(main) - every second
+schedule.every(n).seconds.do(main) - every n amount of seconds
+schedule.every().minute.do(f) - every minute
+schedule.every(n).minutes.do(f) - every n amount of minutes
+schedule.every().hour.do(main) - every hour
+schedule.every(n).hours.do(f) - every n amount of hours
+"""
 if __name__ == '__main__':
     main()
+    schedule.every(6).hours.do(main)
+
+    while 1:
+        schedule.run_pending()
+        s(1)
