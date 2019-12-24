@@ -54,6 +54,7 @@ Check if the images directory is empty by returning True or False
 """
 def checkForEmptyDirectory():
     if not os.listdir(f"{os.getcwd()}\\images"):
+        captions.clear()
         return True
     else:
         return False
