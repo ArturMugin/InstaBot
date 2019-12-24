@@ -15,8 +15,8 @@ def downloadImage(url, fileName):
 # Pre-process the image for downloading
 def handleImages(leagueOfMemes):
     for submission in leagueOfMemes:
-        # Remove restricted characters
-        fileName = re.sub('\W+','', submission.title)
+        # Delete Windows restricted characters
+        fileName = re.sub('\W+',' ', submission.title)
 
 
         # Download the image
