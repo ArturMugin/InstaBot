@@ -44,10 +44,10 @@ def main(bot):
 
     # Select the image
     image = selectImage()
-    print(f"Selected Image: '{image}'")
+    print(f"\nSelected Image: '{image}'")
 
     # Upload the image
-    print("\nAttempting Upload ...")
+    print("Attempting Upload ...")
     uploadImage(bot, image)
 
 """
@@ -71,7 +71,7 @@ if __name__ == '__main__':
     league.login(username="League_boomers", password="leagueoglegendsinsta123")
 
     main(league)
-    #schedule.every(4).hours.do(main)
+    #schedule.every(4).hours.do(lambda: main(league))
     schedule.every(30).seconds.do(lambda: main(league))
 
     while 1:
