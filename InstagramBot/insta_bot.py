@@ -10,6 +10,7 @@ import glob
 # Upload the image to Instagram, set the caption as the filename minus the file extension and then remove it
 def uploadImage(bot, image):
     caption = redditbot.captions[image[:-4]]
+
     if bot.upload_photo(f"{os.getcwd()}\\images\\{image}", caption):
         print("Image Removed")
         removeImage(image, caption)
@@ -17,7 +18,6 @@ def uploadImage(bot, image):
 def removeImage(image, caption):
     try:
         os.remove(f"{os.getcwd()}\\images\\{image}")
-        os.remove(f"{os.getcwd()}\\images\\{image}.REMOVE_ME")
 
         try:
             del redditbot.captions[caption]
@@ -33,15 +33,14 @@ def removeImage(image, caption):
 def selectImage():
     return random.choice(os.listdir(f"{os.getcwd()}\\images"))
 
-def main():
-    # Start the Reddit Bot
-    redditbot.main()
+# Recursively delete .REMOVE_ME file extensions in the project folder
+def deleteRemoveMe():
+    for file in glob.glob(f"{os.getcwd()}\\**/*.REMOVE_ME", recursive=True):
+        os.remove(file)
 
-    # Create the Instagram Bot
-    league = Bot()
-
-    # Login to Instagram
-    league.login(username="League_boomers", password="leagueoglegendsinsta123")
+def main(bot):
+    # Delete REMOVE_ME files
+    deleteRemoveMe()
 
     # Select the image
     image = selectImage()
@@ -49,7 +48,7 @@ def main():
 
     # Upload the image
     print("\nAttempting Upload ...")
-    uploadImage(league, image)
+    uploadImage(bot, image)
 
 """
 if you dont understand this, read this: https://stackoverflow.com/questions/419163/what-does-if-name-main-do#answer-419185
@@ -62,8 +61,18 @@ schedule.every().hour.do(main) - every hour
 schedule.every(n).hours.do(f) - every n amount of hours
 """
 if __name__ == '__main__':
-    main()
-    schedule.every(4).hours.do(main)
+    # Start the Reddit Bot
+    redditbot.main()
+
+    # Create the Instagram Bot
+    league = Bot()
+
+    # Login to Instagram
+    league.login(username="League_boomers", password="leagueoglegendsinsta123")
+
+    main(league)
+    #schedule.every(4).hours.do(main)
+    schedule.every(30).seconds.do(lambda: main(league))
 
     while 1:
         schedule.run_pending()

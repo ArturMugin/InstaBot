@@ -4,7 +4,6 @@ import praw
 import urllib.request
 import os
 import pickle
-
 from PIL import Image # Install 'Pillow' package for PIL to work
 
 captions = {}
@@ -30,13 +29,16 @@ def handleImages(leagueOfMemes):
         downloadImage(submission.url, fileName)
 
     print("All Images Downloaded")
-    print("Stored Captions")
+
     saveCaptions()
+    print("Stored Captions")
+
     changeImageSizes()
 
 def saveCaptions():
     with open("captions.pickle", "wb") as handle:
         pickle.dump(captions, handle, pickle.HIGHEST_PROTOCOL)
+
 """
 Resize the images to the correct sizes for Instagram
 
