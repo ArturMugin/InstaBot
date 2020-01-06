@@ -60,13 +60,23 @@ def loadCaptions():
     with open("captions.pickle", "rb") as handle:
         captions.update(pickle.load(handle))
 
-# Check if the images directory is empty by returning True or False
+"""
+Check if the images directory is empty by returning True or False
+
+If the directory doesn't exist it will be created and return True
+"""
 def checkForEmptyDirectory():
-    if not os.listdir(f"{os.getcwd()}\\images"):
+    path = f"{os.getcwd()}\\images"
+    try:
+        if not os.listdir(path):
+            captions.clear()
+            return True
+        else:
+            return False
+    except FileNotFoundError:
+        os.mkdir(path, 0o777)
         captions.clear()
         return True
-    else:
-        return False
 
 def main():
     # Reddit API login
