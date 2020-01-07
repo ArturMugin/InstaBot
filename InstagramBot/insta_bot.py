@@ -8,13 +8,15 @@ import glob
 
 # Upload the image to Instagram, set the caption as the filename minus the file extension and then remove it
 def uploadImage(bot, image):
-    caption = redditbot.captions[image[:-4]]
-    print(caption)
-    """
-        if bot.upload_photo(f"{os.getcwd()}\\images\\{image}", caption):
+    hashtags = ["#leagueoflegends", "#leagueoflegendsmemes"]
+    originalCaption = redditbot.captions[image[:-4]]
+    caption = f"{originalCaption} {' '.join(hashtag for hashtag in hashtags)}"
+
+    if bot.upload_photo(f"{os.getcwd()}\\images\\{image}", caption):
         print("Image Removed")
-        removeImage(image, caption)
-    """
+        removeImage(image, originalCaption)
+
+
 
 def removeImage(image, caption):
     try:
@@ -69,7 +71,8 @@ if __name__ == '__main__':
     league = Bot()
 
     # Login to Instagram
-    league.login(username="League_boomers", password="leagueoglegendsinsta123")
+    league.login(username="testingapitest", password="Testingapitest123")
+    #league.login(username="League_boomers", password="leagueoglegendsinsta123")
 
     main(league)
     #schedule.every(4).hours.do(lambda: main(league))
