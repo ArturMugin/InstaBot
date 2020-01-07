@@ -12,9 +12,14 @@ def uploadImage(bot, image):
     originalCaption = redditbot.captions[image[:-4]]
     caption = f"{originalCaption} {' '.join(hashtag for hashtag in hashtags)}"
 
-    if bot.upload_photo(f"{os.getcwd()}\\images\\{image}", caption):
-        print("Image Removed")
-        removeImage(image, originalCaption)
+    if image[-4:] in [".jpg", ".jpeg", ".png"]:
+        if bot.upload_photo(f"{os.getcwd()}\\images\\{image}", caption):
+            print("Image Removed")
+            removeImage(image, originalCaption)
+    else:
+        if bot.upload_video(f"{os.getcwd()}\\images\\{image}", caption):
+            print("Image Removed")
+            removeImage(image, originalCaption)
 
 
 
