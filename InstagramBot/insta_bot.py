@@ -9,7 +9,7 @@ import glob
 # Upload the image to Instagram, set the caption as the filename minus the file extension and then remove it
 def uploadImage(bot, image):
     path = f"{os.getcwd()}\\images\\{image}"
-    hashtags = ["#leagueoflegends", "#leagueoflegendsmemes"]
+    hashtags = ["#league", "#leagueoflegends", "#lol", "#riot", "#games", "#riotgames", "#legends", "#game", "#leagueoflegendsmemes", "#leagueoflegendsfanart", "#leagueoflegendscosplay", "#gaming", "#art", "#rito", "#leagueoflegend", "#lolgame", "#leaguegame", "#champions", "#leaguememes", "#lolmemes", "#leagueoflegendsmeme", "#garen", "#jinx", "#xayah"]
     originalCaption = redditbot.captions[image[:-4]]
     caption = f"{originalCaption} {' '.join(hashtag for hashtag in hashtags)}"
 
@@ -76,7 +76,7 @@ if __name__ == '__main__':
 
     # Login to Instagram
     #league.login(username="testingapitest", password="Testingapitest123")
-    league.login(username="league_boomers", password="leagueoglegendsinsta123")
+    league.login(username="LVL7.Yasuo", password="art2000")
 
     main(league)
     schedule.every(4).hours.do(lambda: main(league))
