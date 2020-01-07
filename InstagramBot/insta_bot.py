@@ -15,7 +15,6 @@ def uploadImage(bot, image):
 
     if image[-4:] in [".jpg", ".jpeg", ".png"]:
         if bot.upload_photo(path, caption):
-            print("Image Removed")
             removeImage(image, originalCaption)
     else:
         if bot.upload_video(path, caption):
@@ -29,6 +28,7 @@ def removeImage(image, caption):
         try:
             del redditbot.captions[caption]
             redditbot.saveCaptions()
+            print("Image Removed")
         except KeyError:
             pass
 
