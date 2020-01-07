@@ -11,7 +11,7 @@ def uploadImage(bot, image):
     path = f"{os.getcwd()}\\images\\{image}"
     hashtags = ["#league", "#leagueoflegends", "#lol", "#riot", "#games", "#riotgames", "#legends", "#game", "#leagueoflegendsmemes", "#leagueoflegendsfanart", "#leagueoflegendscosplay", "#gaming", "#art", "#rito", "#leagueoflegend", "#lolgame", "#leaguegame", "#champions", "#leaguememes", "#lolmemes", "#leagueoflegendsmeme", "#garen", "#jinx", "#xayah"]
     originalCaption = redditbot.captions[image[:-4]]
-    caption = f"{originalCaption} {' '.join(hashtag for hashtag in hashtags)}"
+    caption = f"{originalCaption}\n.\n.\n{' '.join(hashtag for hashtag in hashtags)}"
 
     if image[-4:] in [".jpg", ".jpeg", ".png"]:
         if bot.upload_photo(path, caption):
