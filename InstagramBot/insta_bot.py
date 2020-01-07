@@ -8,16 +8,17 @@ import glob
 
 # Upload the image to Instagram, set the caption as the filename minus the file extension and then remove it
 def uploadImage(bot, image):
+    path = f"{os.getcwd()}\\images\\{image}"
     hashtags = ["#leagueoflegends", "#leagueoflegendsmemes"]
     originalCaption = redditbot.captions[image[:-4]]
     caption = f"{originalCaption} {' '.join(hashtag for hashtag in hashtags)}"
 
     if image[-4:] in [".jpg", ".jpeg", ".png"]:
-        if bot.upload_photo(f"{os.getcwd()}\\images\\{image}", caption):
+        if bot.upload_photo(path, caption):
             print("Image Removed")
             removeImage(image, originalCaption)
     else:
-        if bot.upload_video(f"{os.getcwd()}\\images\\{image}", caption):
+        if bot.upload_video(path, caption):
             print("Image Removed")
             removeImage(image, originalCaption)
 
