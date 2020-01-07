@@ -21,8 +21,6 @@ def uploadImage(bot, image):
             print("Image Removed")
             removeImage(image, originalCaption)
 
-
-
 def removeImage(image, caption):
     try:
         os.remove(f"{os.getcwd()}\\images\\{image}")
@@ -76,12 +74,11 @@ if __name__ == '__main__':
     league = Bot()
 
     # Login to Instagram
-    league.login(username="testingapitest", password="Testingapitest123")
-    #league.login(username="League_boomers", password="leagueoglegendsinsta123")
+    #league.login(username="testingapitest", password="Testingapitest123")
+    league.login(username="league_boomers", password="leagueoglegendsinsta123")
 
     main(league)
-    #schedule.every(4).hours.do(lambda: main(league))
-    schedule.every(30).seconds.do(lambda: main(league))
+    schedule.every(4).hours.do(lambda: main(league))
 
     while 1:
         schedule.run_pending()
