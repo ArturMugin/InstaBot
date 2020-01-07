@@ -18,7 +18,6 @@ def uploadImage(bot, image):
             removeImage(image, originalCaption)
     else:
         if bot.upload_video(path, caption):
-            print("Image Removed")
             removeImage(image, originalCaption)
 
 def removeImage(image, caption):
